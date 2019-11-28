@@ -24,3 +24,11 @@ body,
 .el-pagination {
   margin-top: 15px;
 }
+.zk-table {
+  margin-top: 15px;
+}
+
+/* 级联选择器: 当后台返回数据过多时,导致级联页面的高度超出父级页面的可视区域 */
+.el-cascader-menu {
+  height: 240px;
+}

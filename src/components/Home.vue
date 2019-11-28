@@ -14,24 +14,41 @@
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!-- 侧边栏菜单 -->
-        <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="$route.path">
+        <el-menu
+          background-color="#333744"
+          text-color="#fff"
+          active-text-color="#409EFF"
+          unique-opened
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          :router="true"
+          :default-active="$route.path"
+        >
           <!-- 一级菜单 -->
-          <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
+          <el-submenu
+            :index="item.id + ''"
+            v-for="item in menulist"
+            :key="item.id"
+          >
             <!-- 一级菜单的模板 -->
             <template slot="title">
               <!-- 图标 -->
               <i :class="iconsObj[item.id]"></i>
               <!-- 文本 -->
-              <span>{{item.authName}}</span>
+              <span>{{ item.authName }}</span>
             </template>
 
             <!-- 二级菜单 -->
-            <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id">
+            <el-menu-item
+              :index="'/' + subItem.path"
+              v-for="subItem in item.children"
+              :key="subItem.id"
+            >
               <template slot="title">
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>
                 <!-- 文本 -->
-                <span>{{subItem.authName}}</span>
+                <span>{{ subItem.authName }}</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -49,7 +66,7 @@
 <script>
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       menulist: [],
       // 图标集合
@@ -63,22 +80,22 @@ export default {
       isCollapse: false
     }
   },
-  created () {
+  created() {
     this.getMenuList()
   },
   methods: {
-    logout () {
+    logout() {
       sessionStorage.clear()
       this.$router.push('/login')
     },
     // 获取所有的菜单
-    async getMenuList () {
+    async getMenuList() {
       const { data: res } = await this.$axios.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
     },
     // 点击按钮, 折叠与隐藏菜单
-    toggleCollapse () {
+    toggleCollapse() {
       this.isCollapse = !this.isCollapse
     }
   }
