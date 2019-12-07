@@ -32,3 +32,15 @@ body,
 .el-cascader-menu {
   height: 240px;
 }
+.el-steps {
+  margin: 15px 0;
+}
+.el-step__title {
+  font-size: 13px;
+}
+.el-form-item__label {
+  text-align: left;
+}
+.ql-editor {
+  min-height: 300px;
+}
