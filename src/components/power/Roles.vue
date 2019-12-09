@@ -17,7 +17,7 @@
       </el-row>
 
       <!-- 角色列表区域 -->
-      <el-table :data="rolesList" border stripe>
+      <el-table :data="rolesList" border stripe :row-key="getRowKey">
         <!-- 展开列 -->
         <el-table-column type="expand">
           <template slot-scope="scope">
@@ -95,6 +95,11 @@ export default {
     this.getRolesList()
   },
   methods: {
+    // 获取行数据的key,防止在发布阶段报错
+    getRowKey (row) {
+      console.log(row)
+      return row.id
+    },
     // 获取所有角色的列表
     async getRolesList () {
       const { data: res } = await this.$axios.get('roles')
